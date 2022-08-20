@@ -1,0 +1,509 @@
+/* CSS Document */
+.bg-dark{ background-color: #15283c !important; }
+body{ background-color: #edf2f6; }
+.text-extra{ font-style: italic; font-size: 10pt; margin-bottom: 0; }
+
+
+.profile-cover{ background-color: #fff; }
+.profile-title{ padding:10px 0px; }
+	.profile-title h5, .profile-title p{ margin-top: 0; margin-bottom: 0px; }
+	.profile-title p{ font-style: italic; font-size: 10pt; }
+	.profile-info .profile-label{ font-weight: bolder; }
+	.profile-info span{ font-style: italic; font-size: 10pt; margin-right: 4px; }
+
+.btn-reservation button{ font-size: 10pt; }
+	.btn-reservation:hover{ text-decoration: none; }
+
+.main-content{ padding: 20px 0;  }
+
+.reservation-table th { font-size: 10pt; }
+.reservation-table td { font-size: 11pt; }
+.required-asterisk{
+    color: red;
+    font-weight: bold;
+    margin-left: -3px;
+    font-size: 1.2em;
+}
+.modal-dialog { 
+  display: inline-block; 
+  vertical-align: middle; 
+} 
+.span-space{
+  color:white;
+  font-weight: bold;
+  margin-left: 3px;
+  font-size: 1.2em;
+}
+
+.modal .modal-content { 
+  padding: 20px 20px 20px 20px; 
+  -webkit-animation-name: modal-animation; 
+  -webkit-animation-duration: 0.5s; 
+  animation-name: modal-animation; 
+  animation-duration: 0.5s; 
+
+} 
+.modal:before { 
+  content: ''; 
+  display: inline-block; 
+  height: 100%; 
+  vertical-align: middle; 
+}
+.unitDeposit { font-style: italic; margin-top: 15px; font-size: 11pt; }
+.unitName{ font-weight: 700; }
+.unitList .row{ margin-bottom: 10px; border-bottom: 1px solid #f1f1f1; padding-bottom: 10px;}
+button.unit{ margin-top: 25px; }
+
+
+
+aside p, aside .reservation-block .resort, aside .reservation-block .date{ font-size: 10pt; }
+	aside .reservation-block { margin-bottom: 1rem; }
+	aside .reservation-block .resort{ display: inline; }
+	aside .reservation-block svg{ width: 13px; color: gray; margin-right: 5px; }
+
+aside .facebook-list .d-flex{ margin-bottom: 10px; }
+aside .facebook-list .resort{ font-size: 10pt; }
+	aside .facebook-list .tag{ font-size: 8pt; display: inline; }
+
+
+main .member-handbook .btn{ width: 100%; }
+
+
+
+
+/******** FORMS ********/   
+form svg.feather{ margin: 6px; }
+form input[type="checkbox"]{
+  width: 24px; height: 24px; 
+  border: 1px solid #e9ecef; 
+  background-color: #FFFFFF;
+  box-shadow: inset 0 1px 3px #f8f9fa;}
+.formExtra{ margin-top: 15px; }
+
+#loginForm input.form-control, #joinForm input.form-control{ padding-left: 35px; }
+
+/** Pagignation to the table **/
+
+.pagination>a,
+.pagination>span {
+    float: left;
+    margin-left: 5px;
+    padding: 0 6px;
+    min-width: 17px;
+    line-height: 20px;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    color: #111;
+    text-align: center;
+    text-decoration: none;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.pagination :first-child { margin-left: 0; }
+
+.pagination>a {
+    border-color: rgba(194, 188, 188, 0.9);
+    text-align: center;
+    height: 22px;
+    background-color: white;
+}
+
+.pagination>span,
+.pagination>a:active {
+    text-shadow: 0 -1px black;
+    background: #1c1c1c;
+    background: rgba(255, 255, 255, 0.01);
+    border-color: black rgba(0, 0, 0, 0.65) rgba(0, 0, 0, 0.6);
+    -webkit-box-shadow: inset 0 1px rgba(0, 0, 0, 0.05), inset 0 2px 2px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.06);
+    box-shadow: inset 0 1px rgba(0, 0, 0, 0.05), inset 0 2px 2px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.06);
+}
+
+.pager {
+	float: none;
+	min-width: initial;
+	width: 100%;
+}
+.pagination {
+	display: block;
+    width: 250px;
+    margin-left: auto;
+    margin-right: 3%;
+    margin-bottom: 5px;
+}
+.pagination>.pagedisplay {
+    margin-left: 5px;
+    float: left;
+    width: 4em;
+    text-align: center;
+    background-color: transparent;
+    border: none;
+}
+.page {
+    margin-top:-10px;
+}
+
+.pagination>select { 
+    margin-left: 7px; 
+    height: 22px; 
+    border-color: rgba(194, 188, 188, 0.9); 
+}
+.searchInput {
+    float: right;
+    margin-bottom: 10px;
+}
+/*********Password Policy********/
+#message {
+    display:none;
+    font-size:13px;
+    color: #000;
+    position: relative;
+    padding: 0px;
+    margin-top: 10px;
+    margin-bottom: -10px;
+    width: 100%
+  }
+ 
+  #message p {
+    padding: 5px 30px;
+    font-size:11px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  }
+  
+  /* Add a green text color and a checkmark when the requirements are right */
+  .valid {
+    color:  #11c711;
+  }
+  
+  .valid:before {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    position: relative;
+    left: -10px;
+    content: "Ã¢Å“â€";
+  }
+  
+  /* Add a red text color and an "x" when the requirements are wrong */
+  .invalid {
+    color: red;
+  }
+  
+  .invalid:before {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    position: relative;
+    left: -10px;
+    content: "Ã¢Å“â€“";
+  }
+
+  .checkInbox{
+  	height:40%;
+  }
+  .checkInboxmsg{
+    align-items: center;
+    padding-top: 7%;
+    padding-right: 7%;
+    padding-left: 7%;
+    font-size:17px;
+  }
+
+  .displayInfo{
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+  }
+
+  .prevImage {
+    position: absolute;
+    top: 50%;
+    left: 9%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    background-color: transparent;
+    color: rgb(194, 191, 191);
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+    height: 50px;
+  }
+
+  .nextImage {
+    position: absolute;
+    top: 50%;
+    left: 91%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    background-color: transparent;
+    color: rgb(194, 191, 191);
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+    height: 50px;
+  }
+
+  .next:hover, .prev:hover {
+    background-color: #a9adb3;
+    color:#000;
+    border: none;
+    cursor: pointer;
+  }
+
+  .text-large {
+    font-size: 150%;
+  }
+/*------------Processing--------------------*/
+#spinnerContainer{
+  display:none;
+  width:100%;
+  height:100%;
+  position:fixed;
+  opacity: 0.8; 
+  z-index: 10001;
+  left:0px;
+  top:0px;
+  background-color: white;
+}
+.spinner {
+  margin: 100px auto;
+  margin-top: 210px;
+  width: 200px;
+  height: 30px;
+  text-align: center;
+  font-size: 12px;
+}
+.loaderText {
+  position:fixed;
+  top: 50%;
+  width: 500px;
+  height: auto;
+}
+#spanText{
+  color: #007bff;
+  font-size: 17px;
+  font-weight: bold;
+  margin-left: -200px;
+}
+.spinner .loader {
+   margin-left:2px;
+   background-color: white;
+   height: 59px;
+   width: 5px;
+   display: inline-block;
+   -webkit-animation: stretchdelay 1.2s infinite ease-in-out;
+   animation: stretchdelay 1.2s infinite ease-in-out;
+}
+
+  h1{
+    text-align:center;
+    }
+  .spinner .loader {
+    border: 15px solid #f3f3f3;
+    position:absolute;
+    border-radius: 50%;
+    border-top: 20px solid #007bff;
+    border-bottom: 20px solid #007bff;
+    width: 100px;
+    height: 100px;
+    animation: spin 2s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  .unit-image{width:315px;height:315px}
+
+  /*Cancel Reservation Model view CSS*/
+  @media  screen and (max-device-width:1250px){
+    #mobileCancelRes {
+      margin-left: 20%  !important; 
+      margin-top: 10% !important; 
+      width: 370px !important; 
+    }
+    #rvShowInfoButton{
+      float: right !important; 
+      margin-top: -1px !important; 
+    }
+  }
+  @media  screen and (max-device-width:850px){
+    #mobileCancelRes {
+      margin-left: 20%  !important; 
+      margin-top: 10% !important; 
+      width: 350px !important; 
+    }
+    #rvShowInfoButton{
+      float: right !important; 
+      margin-top: -1px !important; 
+    }
+  }
+  @media  screen and (max-device-width:640px){
+    #mobileCancelRes {
+      margin-left: 7%  !important; 
+      margin-top: 10% !important; 
+      width: 250px !important; 
+    }
+    #rvShowInfoButton{
+      float: right !important; 
+      margin-top: -15px !important; 
+    }
+  }
+  @media  screen and (max-device-width:340px){
+    #mobileCancelRes {
+      margin-left: 20px  !important; 
+      margin-top: 10% !important; 
+      width: 150px !important; 
+    }
+    #rvShowInfoButton{
+      float: right !important; 
+      margin-top: -15px !important; 
+    }
+  }
+  
+  #mobileCancelRes {
+    margin-left: 30%; 
+    margin-top: 5%;
+    width: 600px;
+  }
+  #rvShowInfoButton{
+    float: right; 
+  }
+  .checkboxActive{
+    background: #dc3545;
+    color:#fff;
+  }
+  .checkboxInactive{
+    background: #d46c77;
+    color:#fff;
+  }
+  .confirmReservation{
+    border: 1px solid #1c04f7;
+    box-shadow: inset 0 1px 3px rgb(0 0 0 / 30%);
+  }
+  .confirmLable{
+    margin-left: 15px;
+  }
+
+  .makeReservationBtn{
+    background-color: #ffc800;
+    border-color: #cea200
+  }
+  .customLink{
+    color: white;
+  }
+  .customLink:hover u {
+    color: #bfd2fd;
+}
+  .validationRule{
+    background: #dc3545;
+    color: #fff;
+  }
+
+  /*RV Grid*/
+#availabilityGrid .box-body{ overflow-x: scroll; }
+#availabilityGrid table{ margin: 0 25px; width: 100%; }
+#availabilityGrid table tr{padding-left: 5px;}
+#availabilityGrid table tr:nth-child(even){ background: #fdf2d0;}
+#availabilityGrid th{ min-width: 45px; text-align: center; font-weight: 600;font-size: 10pt; padding-bottom: 5px; }
+#availabilityGrid th.availabilityType{ padding-left: 10px; text-align: left; min-width: 200px; }
+#availabilityGrid td{ text-align: center; border-right: 1px solid #e8dfc0; padding: 7px 0;}
+#availabilityGrid td.selected{ background: #fe3423; color: white; border-right: 1px solid #c02f23; }
+#availabilityGrid td.selected.start, #availabilityGrid td.selected.end{ min-width: 55px; }
+#availabilityGrid td.selected.start:before{ content: "ARRIVE"; font-size: 8pt; position: relative; display: block; top: -7px; }
+#availabilityGrid td.selected.start span{ display: block; top: -8px; position: relative; }
+#availabilityGrid td.selected.end{ background: #eb847c !important; border-right: none; }
+/*#availabilityGrid td.selected.end:before{ content: "DEPART"; font-size: 8pt; position: relative; display: block; top: -7px; } */
+#availabilityGrid td.selected.end span{ font-size: 10pt; }
+
+/*RV Calender*/
+.svg-rect{
+  margin-left: 5px;
+  font-size: 0.78em;
+  font-weight: bold;
+  font-style: italic;
+  float: right;
+  margin-top: 5px;
+}
+.custom-css-available a{
+  border-radius: 100px !important;
+  text-align: center !important;
+  padding: 18px !important;
+  margin: 0px !important;
+  border: none !important;
+  /* color: #1c94c4  !important; */
+}
+.custom-css-not-available a{
+  color: black  !important;
+  background: rgba(248, 82, 82, 0.794)  !important;
+  border-radius: 100px !important;
+  text-align: center !important;
+  padding: 18px !important;
+  margin: 0px !important;
+  border: none !important;
+}
+.custom-css-invalid span{
+  color: #000 !important;
+  background: #fff !important;
+  border: none;
+  font-weight: 100;
+  border-radius: 100px !important;
+  text-align: center !important;
+  padding: 18px !important;
+  margin: 0px !important;
+  border: none !important;
+}
+.custom-css-blocked span{
+  color: white  !important;
+  background: rgba(51, 43, 43, 0.794)  !important;
+  border-radius: 100px !important;
+  text-align: center !important;
+  padding: 18px !important;
+  margin: 0px !important;
+  border: none !important;
+}
+
+
+
+
+#ui-datepicker-div.ui-datepicker{ background: #fff; }
+	.ui-datepicker .ui-datepicker-header{ background: none; border: none; margin-top: 10px; margin-bottom: 8px; }
+	#ui-datepicker-div.ui-datepicker .ui-datepicker-header .ui-datepicker-next, #ui-datepicker-div.ui-datepicker .ui-datepicker-header .ui-datepicker-prev{ border-radius: 15px; border: 1px solid #ccc; box-shadow: 1px 1px 4px #ccc; width: 30px; height: 30px; background: #fff; margin-top: -8px; }
+	#ui-datepicker-div.ui-datepicker .ui-datepicker-next span, #ui-datepicker-div.ui-datepicker .ui-datepicker-prev span{ border-right: 2px solid #1272be; border-top: 2px solid #1272be; height: 8px; width: 8px; margin-top: -4px; }
+	#ui-datepicker-div.ui-datepicker .ui-datepicker-next, #ui-datepicker-div.ui-datepicker .ui-datepicker-next-hover{ right: 12px; }
+		#ui-datepicker-div.ui-datepicker .ui-datepicker-next span{ transform: rotate(45deg); margin-left: -5px;}
+	#ui-datepicker-div.ui-datepicker .ui-datepicker-prev, #ui-datepicker-div.ui-datepicker .ui-datepicker-prev-hover{ left: 12px; }
+		#ui-datepicker-div.ui-datepicker .ui-datepicker-prev span{ transform: rotate(-135deg); margin-left: -2px}
+		#ui-datepicker-div.ui-datepicker .ui-datepicker-prev.ui-state-hover{  }
+	#ui-datepicker-div.ui-datepicker .ui-icon, #ui-datepicker-div.ui-widget-content .ui-icon{background-image: none;}
+	#ui-datepicker-div.ui-datepicker .ui-datepicker-header .ui-state-hover{ background: #fff; border: 2px solid #1272be; }
+	#ui-datepicker-div.ui-datepicker table thead{background: none; }
+	
+	#ui-datepicker-div.ui-datepicker .ui-datepicker-title{ font-size: 14px; color: #000;}
+	
+	#ui-datepicker-div.ui-datepicker .ui-datepicker-calendar th{ font-weight: 100; font-size: 12px; text-transform: uppercase; }
+		#ui-datepicker-div.ui-datepicker .ui-datepicker-calendar th.ui-datepicker-week-end{ font-weight: bolder; }
+		
+	#ui-datepicker-div.ui-datepicker .ui-datepicker-calendar td span{ text-align: center; }
+	#ui-datepicker-div.ui-datepicker .ui-datepicker-calendar .ui-state-default{ text-align: center; font-weight: 600; border: none; font-size: 12px; padding: 18px; border-radius: 25px; margin: 0px; }
+	
+	#ui-datepicker-div.ui-datepicker .ui-datepicker-calendar .custom-css-available a.ui-state-active{ background: #1272be; color: #fff;}
+	#ui-datepicker-div.ui-datepicker .ui-datepicker-calendar .custom-css-available a.ui-state-hover{ background: #9fd5ff; color: #fff;}
+	#ui-datepicker-div.ui-datepicker .ui-datepicker-calendar .custom-css-available a{ color: #1c94c4; }
+  .background-red{
+    color: #fff; 
+    background: #dc3545;
+    border-radius: 10px;
+    height:50px; 
+  }
+  .background-red a{
+    color: #fff; 
+    text-decoration: underline; 
+    font-weight: bolder;
+  }
+  .background-red:hover u {
+    color: #bfd2fd;
+}
+

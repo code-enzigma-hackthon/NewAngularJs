@@ -1,0 +1,90 @@
+<html lang="en" ng-app="memberPortalApp">
+<head>
+    <base href="/"></base>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="src/images/ILoveCamping.png" type="image/x-icon">
+    <title>Ocean Canyon Properties Member Page</title>
+    <!-- Bootstrap -->
+    <script src="src/js/angular.min.js"></script>
+    <script src="src/js/angular-cookies.min.js"></script>
+    <script src="src/js/angular-ui-router.js"></script>
+    <script src="src/js/toaster.min.js"></script>
+    <script src="src/js/connect-facebook.js"></script>
+    <script src="src/js/jquery-3.4.1.min.js"></script>
+    <script src="src/js/angular-block-ui.js"></script>
+    <script src="src/js/XDate.js"></script>
+    <script src="index.js?ver=2.1"></script>
+    <script src="src/environment/env.js"></script>
+    <script src="src/service/apiCallout.js"></script>
+    <script src="src/factory/utils.js"></script>
+    <script src="src/factory/error-manager.js"></script>
+    <script src="src/component/auth/login/login.js"></script>
+    <script src="src/component/member/forgotPassword/forgotPassword.js"></script>
+    <script src="src/component/member/resetPassword/resetPassword.js"></script>
+    <script src="src/component/member/memberInfo/memberInfo.js"></script>
+    <script src="src/component/listView/listView.js"></script>
+    <script src="src/component/help/help.js"></script>
+    <script src="src/component/reservation/reservationInfo/reservationInfo.js"></script>
+    <script src="src/component/reservation/cancelReservation/cancelReservation.js"></script>
+    <script src="src/component/reservation/requestReservation/requestReservation.js"></script>
+    <script src="src/component/reservation/activeReservation/activeReservation.js"></script>
+    <script src="src/component/spinner/spinner.js"></script>
+    <script src="src/component/home/home.js"></script>
+    <script src="src/component/member/updateEmail/updateEmail.js"></script>
+    <script src="src/component/member/verifyEmail/verifyEmail.js"></script>
+    <script src="src/component/member/register/register.js"></script>
+    <script src="src/component/rightSidebar/rightSidebar.js"></script>
+    <script src="src/component/welcome/welcome.js"></script>
+    <script src="src/component/member/accountInfo/accountInfo.js"></script>
+    <script src="src/component/reservation/payment/v2payment.js"></script>
+    <script src="src/component/checkInbox/checkInbox.js"></script>
+    <link href="src/css/bootstrap-4.4.1.css" rel="stylesheet">
+    <link href="src/css/style.css" rel="stylesheet">
+    <link href="src/css/toaster.css" rel="stylesheet">
+    <link href="src/css/angular-block-ui.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <!-- <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
+    rel = "stylesheet"> -->
+    <link href="src/css/jquery-ui.css" rel="stylesheet">
+    <script src = "src/js/query-1.10.2.js"></script>
+    <script src = "src/js/jquery-ui-1.10.4.js"></script>
+    <!-- Google Tag Manager:-->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-TJWH2ZQ');</script>
+    <!-- End Google Tag Manager -->
+
+
+    <!-- START chatstack.com Live Chat HTML Code -->
+    <!-- <script type="text/javascript">
+        var Chatstack = { server: 'chat.oceancanyon.com' };
+        (function(d, undefined) {
+            // JavaScript
+            Chatstack.e = []; Chatstack.ready = function (c) { Chatstack.e.push(c); }
+            var b = d.createElement('script'); b.type = 'text/javascript'; b.async = true;
+            b.src = ('https:' == d.location.protocol ? 'https://' : 'http://') + Chatstack.server + '/livehelp/scripts/js.min.js';
+            var s = d.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(b, s);
+        })(document);
+    </script> -->
+    <!-- END chatstack.com Live Chat HTML Code -->
+
+    <!-- START chatstack.com Live Chat HTML Code -->
+    <!-- <a ng-hide=true href="#" class="LiveHelpButton default"><img src="https://chat.oceancanyon.com/livehelp/status.php" id="LiveHelpStatusDefault" name="LiveHelpStatusDefault" border="0" alt="Live Help" class="LiveHelpStatus"/></a> -->
+    <!-- END chatstack.com Live Chat HTML Code -->
+</head>
+<body>
+    <!-- Google Tag Manager (noscript)-->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TJWH2ZQ"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <div>
+        <div ui-view></div>
+    </div>
+</body>
+
+</html>

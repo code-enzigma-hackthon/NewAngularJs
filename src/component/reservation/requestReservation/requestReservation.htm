@@ -1,0 +1,205 @@
+<div class="container">
+    <div class="row">
+        <!----------- CENTER CONTENT -------------->
+        <main class="col col-xl-12 order-x1-2 col-lg-12 order-lg-2 col-md-12 col-sm-12 col-12" id="isRequestMainDiv">
+            <h3>Make a Reservation Request</h3>
+            <div ng-if="memberInfo.Advance_up_to__c" class="box shadow-sm border rounded bg-white mb-3 res-extra">
+                <div class="box-body p-3">Your membership allows you to make {{ memberInfo.RV_Site_Days_Advance_Reserve__c }} Day Advanced Reservations. You can make a member-reservation up to {{memberInfo.Advance_up_to__c}}.<br>
+                </div>
+            </div>
+            <div class="box shadow-sm border rounded mb-3" style="background: #dc3545; color: #fff;">
+                <div class="box-body p-3">
+                    <p><strong>Please call the Reservations Department at (855) 872-1469 for:</strong>
+                    </p><ul>
+                        <li>Getaway Reservations.</li>
+                        <li>Buy Out Reservations.</li>
+                        <li>Unit Reservations starting within the next 3 days.</li>
+                    </ul><p></p>
+                    <p class="mb-0">Please note that this is only a request for a reservation. The Reservations Department will look over your request and if they have any questions, they may have to contact you for further details.</p>
+                </div>
+            </div>
+            <form method="POST" ng-submit="createreservation()">
+                <!---------- Reservation Information -------------->
+                <div class="box shadow-sm border rounded bg-white mb-3 reservation-info">
+                    <div class="box-title p-3 border-bottom">
+                        <h6 class="mb-0"><b>Reservation Details</b></h6>
+                    </div>
+                    <div class="box-body border-bottom p-3">
+                        <div class="row">
+                            <div class="col-sm-6 form-group">
+                                <label for="member-type"><h6 class="mb-0">Who is this Reservation for?</h6></label>
+                                <span class="required-asterisk">*</span>
+                                <select class="form-control" ng-model="Reservation_Member_Type__c" id="member-type" ng-change="memberTypeChanged()" name="member_type" required>
+                                    <option value="" disabled selected hidden>--Select--</option>
+                                    <option value="{{ReservationMemberType.Res_Member_Type_For_Member_Portal__c}}" ng-repeat="ReservationMemberType in ReservationMemberTypes" data-ng-bind="ReservationMemberType.MasterLabel"></option>
+                                </select>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label for="party"><h6 class="mb-0">How many people in party?</h6></label>
+                                <span class="span-space">.</span>
+                                <input type="number" step="1.00" min="0" max="999" autocomplete="off" class="form-control mb-0" id="party" ng-model="How_Many_People__c" name="party">
+                            </div>
+                            <div ng-show="showGuest" class="col-sm-6 form-group">
+                                <label for="resort"><h6 class="mb-0">Family Member/Guest</h6></label>
+                                <span class="required-asterisk">*</span>
+                                <select Id="guest" class="form-control" name="guest" ng-model="Member_Associate_Guest_Name__c">
+                                    <option value="" disabled selected hidden>--Select--</option>
+                                    <option value="{{guest.Id}}" ng-repeat="guest in memberInfo.Member_Associate_Guest_Reciprocal__r" data-ng-bind="guest.Name"></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 form-group">
+                                <label for="arrival-date"><h6 class="mb-0">Arrival Date</h6></label>
+                                <span class="required-asterisk">*</span>
+                                <input id="arivalId" autocomplete="off" placeholder="mm/dd/yyyy" class="form-control" name="arrival-date" >
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label for="departure-date"><h6 class="mb-0">Departure Date</h6></label>
+                                <span class="required-asterisk">*</span>
+                                <input id="departureId" autocomplete="off" placeholder="mm/dd/yyyy" class="form-control" name="depature-date" >
+                            </div>
+                        
+                            <div class="col-sm-6 form-group">
+                                <label for="resort"><h6 class="mb-0">Which Resort?</h6></label>
+                                <span class="required-asterisk">*</span>
+                                <select class="form-control" id="resortId" name="resort" ng-model="Reservation_Resort__c" ng-change="resortChanged()" required>
+                                    <option value="" disabled selected hidden>--Select--</option>
+                                    <option value="{{resort.Id}}" ng-repeat="resort in resorts" data-ng-bind="resort.Name"></option>
+                                </select>
+                            </div>
+                            <div ng-show="Reservation_Resort__c&&showunit" class="col-sm-6 form-group">
+                                <label for="unitType"><h6 class="mb-0">Unit Type?</h6></label>
+                                <span class="required-asterisk">*</span>
+                                <select class="form-control" id="unitType" ng-change="unitTypeChanged()" name="unitType" ng-model="Accommodation_Type__c">
+                                    <option value="" disabled selected hidden>--Select--</option>
+                                    <option value="{{unitType.Id}}" ng-repeat="unitType in UnitTypesForSelResort" data-ng-bind="unitType.Name"></option>
+                                </select>
+                            </div>
+                            <div class="col-sm-12 mb-0 form-group">
+                                <div ng-show="errorAlert" class="alert alert-danger form-group validationRule" role="alert"> {{errorAlert}} </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!---------- RV Reservation Fields ------------>
+                <div id="rv-reservation-fields" ng-show="rvInfoShow">
+                    <div class="box shadow-sm border rounded bg-white mb-3">
+                        <div class="box-title p-3 border-bottom">
+                            <div class="row" style="height:30px">
+                                <h6 class="col-sm-8 form-group"><b>RV Information</b></h6>
+                                <div class="col-sm-4 form-group">
+                                    <button type="button" class="btn btn-outline-primary float-right" ng-click="updateRvInfo()">Update RV Information</button>
+                                </div>
+                            </div>                            
+                        </div>
+                        <div class="box-body p-3 ">
+                            <div class="row" data-ng-if="memberInfo.RV_Type__c&&memberInfo.RV_Length__c&&memberInfo.No_of_Slide_Outs__c&&memberInfo.RV_Electrical__c">
+                                <div  class="col-sm-6 form-group profile-info">
+                                    <p>
+                                        <span>RV Type: </span>{{memberInfo.RV_Type__c}}<br>
+                                        <span>RV Length: </span>{{memberInfo.RV_Length__c}}<br>
+                                        <span>Number of Slideouts: </span>{{memberInfo.No_of_Slide_Outs__c}}<br>
+                                    </p>
+                                </div>
+                                <div class="col-sm-6 form-group profile-info">
+                                    <p>
+                                        <span>Vehicle Plate: </span>{{memberInfo.Vehicle_Plate__c}}<br>
+                                        <span>Select Your Amperage: </span>{{memberInfo.RV_Electrical__c}}<br>
+                                    </p>
+                                </div>
+                            </div>
+                            <div data-ng-if="!(memberInfo.RV_Type__c&&memberInfo.RV_Length__c&&memberInfo.No_of_Slide_Outs__c&&memberInfo.RV_Electrical__c)" class="row">
+                                <div class="col-sm-12 form-group">
+                                    <div class="box-body p-3 background-red">
+                                        <p>
+                                            <strong>Your RV Information is Incomplete. <a href="" ng-click="updateRvInfo()"> <u>Please update it here before proceeding.</u> </a> </strong>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-6 form-group">
+                                    <label for="pull-through"><h6 class="mb-0">Request a pull-through site</h6></label>
+                                    <span class="span-space">.</span>
+                                    <input type="checkbox" class="form-control" id="pull-through" ng-model="Request_Pull_Through__c" name="pull_through">
+                                </div> 
+                                <div class="form-group col-sm-6">
+                                    <label for="storage"><h6 class="mb-0">Is your RV in the Resort Storage?</h6></label>
+                                    <select class="form-control" id="storage" ng-change="storageChanged()" ng-model="storage" name="storage">
+                                        <option value="">No</option>
+                                        <option value="yes">Yes</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div id="storageFields" class="row" ng-show="displayStorage">
+                                <div class="form-group col-sm-6">
+                                    <label for="pullin"><h6 class="mb-0">Do you need a Pull-In</h6></label>
+                                    <input type="checkbox" class="form-control" id="pullin" ng-model="Pull_In" name="pullin">
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label for="pullout"><h6 class="mb-0">Do you need a Pull-Out</h6></label>
+                                    <input type="checkbox" class="form-control" id="pullout" ng-model="Pull_Out" name="pullout">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-12">
+                                    <label for="notes"><h6 class="mb-0">Do you need any special accommodations?</h6></label>
+                                    <textarea rows="2" maxlength="100" cols="60" class="form-control" name="reservationNotes" id="reservationNotes" ng-model="reservationNotes" ng-trim="false">
+                                    </textarea>
+                                    <p>
+                                        {{100 - reservationNotes.length}} Remaining
+                                    </p>                                 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!-- Unit Reservation Fields -->
+                <div class="box shadow-sm border rounded bg-white mb-3" ng-show="UnitTypeshow" id="unit-reservation-fields">
+                    <div class="box-title p-3 border-bottom">
+                        <h6 class="mb-0"><b>Unit Reservation Information</b></h6>
+                    </div>
+                    <div class="box-body p-3">
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label for="pet"><h6 class="mb-0">Are you bringing a pet?</h6></label>
+                                <select class="form-control" id="pets" ng-change="bringingPet()" ng-model="pet" name="pet">
+                                    <option value="">--Select--</option>
+                                    <option value="no">No</option>
+                                    <option value="yes">Yes</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label for="disability"><h6 class="mb-0">Do you require a disability unit?</h6></label>
+                                <select class="form-control" id="disabilityUnits" ng-change="disabilityUnit()" ng-model="disabilityUnits" name="disabilityUnits">
+                                    <option value="">No</option>
+                                    <option value="yes">Yes</option>
+                                </select>
+                            </div>
+                        </div>    
+                        <div class="row">
+                            <div class="form-group col-sm-12">
+                                <label for="notes"><h6 class="mb-0">Do you need any special accommodations?</h6></label>
+                                <textarea rows="2" maxlength="100" cols="50" class="form-control" name="reservationNotes" id="reservationNotes" ng-model="reservationNotes" ng-trim="false">
+                                </textarea>
+                                <p>
+                                    {{100 - reservationNotes.length}} Remaining
+                                </p>
+                            </div>
+                        </div>                       
+                    </div>
+                </div>
+                <div ng-show="errorMessage" class="alert alert-danger validationRule" role="alert"> {{errorMessage}} </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="cancel" ng-click="cancelReservation()" class="btn btn-primary">Cancel</button>
+            </form>
+        </main>
+    </div>
+</div>

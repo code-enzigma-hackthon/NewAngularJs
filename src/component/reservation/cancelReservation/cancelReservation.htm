@@ -1,0 +1,49 @@
+<div>
+     <div class="modal fade in" tabindex="-1" role="dialog" style="display:block;opacity: 1.5 !important;">
+	<div class="modal-dialog animated fadeInDown" id="mobileCancelRes">
+		<div class="modal-content"  style="width: 120%; margin: 0 auto;">
+			<form name="formCancellation" role="form" novalidate="" class="ng-pristine ng-invalid ng-invalid-required" ng-submit="cancelReservation()">
+				<div class="modal-header">
+					<label>Cancel Reservation</label>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="cancel()">×</button>
+				</div>
+				<div class="alert alert-danger validationRule" role="alert" ng-show="errorMessage">{{errorMessage}}</div>
+				<div class="modal-body">
+					<div class="form-group">
+						<label>Reason for Cancellation</label>
+						<span class="required-asterisk">*</span>
+						<select class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" name="cancellationReason" id="cancellationReason" ng-model="cancellationReason" ng-required="true" placeholder="Cancellation Reason" required="required">
+							<option value="" disabled selected>Cancellation Reason</option>
+							<option value="Illness">Illness</option>
+							<option value="Change of Plans">Change of Plans</option>
+							<option value="Death">Death</option>
+							<option value="Repairs">Repairs</option>  
+							<option value="Weather">Weather</option> 
+							<option value="Other">Other</option> 
+                        </select>
+
+					</div>
+					<div ng-show="cancellationReason == 'Other'" >
+						<label>Explain</label>
+						<span class="required-asterisk">*</span>
+						<textarea rows="2" maxlength="120" cols="50" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required" name="otherReason" id="otherReason" ng-model="otherReason" ng-required="cancellationReason == 'Other'" ng-trim="false">
+							</textarea>
+							<p>
+								{{120 - otherReason.length}} Remaining
+							</p>
+					</div>
+				</div>
+				<div ng-show="deposit&&showPayAndCancelBtn" class="box shadow-sm border rounded mb-3" style="background: hsl(47deg 100% 50%);">
+					<div class="box-body p-3">
+						<p>Because you are cancelling within 3 days, there is a {{deposit}} cancellation fee. If you have any questions, please contact the Reservations Team at 855-872-1469 before cancelling the reservation</p>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button ng-if="!showPayAndCancelBtn" class="btn btn-primary ng-binding" type="submit" ng-disabled="formCancellation.$invalid" disabled="disabled">Submit</button>
+					<button ng-if="showPayAndCancelBtn" class="btn btn-primary ng-binding" type="submit" ng-disabled="formCancellation.$invalid" disabled="disabled">Pay and Cancel</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div> 
+</div>

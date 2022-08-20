@@ -1,0 +1,55 @@
+<div class="bg-white">
+    <div class="container">
+        <div class="row justify-content-center align-items-center d-flex vh-100">
+            <div class="col-md-4 mx-auto">
+                <div class="py-4">
+                    <div class="text-center mb-4">
+                        <img src="src/images/OCPLogo.jpg" alt="Ocean Canyon Properties Member Portal" width="300">
+                        <h5 class="font-weight-bold mt-3">Ocean Canyon Members</h5>
+                    </div>
+                    <form id="joinForm" ng-submit="register()">
+                        <div ng-show="errorMessage&&!messageWithLink&&!valLinkExpire" class="alert alert-danger" role="alert"> {{errorMessage}}</div>
+					    <div ng-show="messageWithLink" class="alert alert-danger" role="alert"> {{errorMessage}} Click <a href="" ng-click="loginPage()">here</a> to login.</div>
+                        <div ng-show="valLinkExpire" class="alert alert-danger" role="alert"> {{errorMessage}}  Please <a href="" ng-click="joinPage()">click here</a>  to reregister and receive a new email with a new link.</div>
+                        <div ng-show="successMessage" class="alert alert-success" role="alert"> {{successMessage}} </div>
+
+                        <div class="form-group">
+                            <label class="mb-1">Your username.</label>
+                            <span class="required-asterisk">*</span>
+                            <div class="position-relative icon-form-control">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user position-absolute"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                                <input type="email" ng-disabled="personEmailDisabled" class="form-control" ng-model="PersonEmail">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="mb-1">Enter Your Password</label>
+                            <span class="required-asterisk">*</span>
+                            <div class="position-relative icon-form-control">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-unlock position-absolute"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 9.9-1"></path></svg>
+                                <input type="password" id="new-password" ng-model="newPassword" class="form-control">
+                            </div>
+                        </div>
+                        <div id="message">
+                            Your password must have atleast:
+                            <p><b id="length" class="invalid">minimun 8 characters</b><br>
+                            <b id="capital" class="invalid">atleast 1 uppercase</b><br>
+                            <b id="number" class="invalid">atleast 1 number</b><br>
+                            <b id="symbol" class="invalid">atleast 1 special character</b></p>                            
+                        </div>
+                        <div class="form-group">
+                            <label class="mb-1">Confirm Password</label>
+                            <span class="required-asterisk">*</span>
+                            <div class="position-relative icon-form-control">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-unlock position-absolute"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 9.9-1"></path></svg>
+                                <input type="password" ng-model="confirmPassword" class="form-control">
+                            </div>
+                        </div>
+                        <button class="btn btn-primary btn-block text-uppercase" type="submit"> Submit&nbsp; </button>
+                        <div class="align-item-center formExtra">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

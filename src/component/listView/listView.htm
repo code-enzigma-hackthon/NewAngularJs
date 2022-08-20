@@ -1,0 +1,13 @@
+<div class="box shadow-sm border rounded bg-white mb-3 reservation-info">
+      <div class="box-body p-3 table-responsive">
+            <table class="reservation-table table table-striped">
+	         <tr class="headerBgColor">
+		       <th ng-repeat="column in columns" name="column.name" style="width:{{column.width}}%;" >
+                   <div >{{column.label}}</div>
+		       </th>
+               </tr>
+               <tr ng-repeat="record in rows" list-view-row="record" columns="columns"></tr>
+               <tr ng-show="rows.length == 0"><td colspan={{columns.length}}>No reservations found.</td></tr>
+            </table>
+      </div>
+</div>

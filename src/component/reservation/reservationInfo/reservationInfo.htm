@@ -1,0 +1,124 @@
+<div>
+    <main class="col col-xl-12 order-x1-2 col-lg-12 order-lg-2 col-md-12 col-sm-12 col-12">
+        <div ng-if="memberInfo.Advance_up_to__c&&!showPayment" class="box shadow-sm border rounded bg-white mb-3 res-extra">
+            <div class="box-body p-3">Your membership allows you to make {{ memberInfo.RV_Site_Days_Advance_Reserve__c }} Day Advanced Reservations. You can make a member-reservation up to {{memberInfo.Advance_up_to__c}}.</div>
+        </div>
+        <a ng-show="!showPayment" class="btn-reservation">
+            <button ng-if ="memberInfo.Can_Make_Active_Reservation_From_Portal__c" type="button" class="btn btn-lg btn-block btn-warning mb-2 makeReservationBtn" ng-click ="activeReservation()">Make a New Reservation</button>
+            <button ng-if ="memberInfo.Can_Make_Request_Reservation_From_Portal__c" type="button" class="btn btn-lg btn-block btn-danger mb-2" ng-click ="requestReservation()">Request a Reservation</button>
+        </a>
+
+        <!---------- Account Information -------------->
+        <div ng-show="!showPayment">
+            <div class="row" ng-show="rows.length > 0">
+                <div style="margin-left: 87%;">{{(currentPage-1) * pageSize + 1}}-{{(currentPage * pageSize) > totalRecordsCount?totalRecordsCount:(currentPage * pageSize)}} of {{totalRecordsCount}}</div>
+                <div class="pager">
+                    <nav class="pagination">
+                        <a class="first" ng-disabled="currentPage==1" ng-click="checkPaginationEndPoint(1)">
+                            << </a>
+                                <a class="prev" ng-disabled="currentPage==1" ng-click="addPage(-1)">
+                                    < </a>
+                                        <div class="pagedisplay">{{currentPage}}/{{pageCount}}</div>
+                                        <a ng-disabled="currentPage==pageCount" ng-click="addPage(1)">></a>
+                                        <a ng-disabled="currentPage==pageCount" ng-click="getTableData(pageCount)">>></a>
+                                        <select class="pagesize ng-pristine ng-untouched ng-valid" ng-model="pageSize" ng-change="getTableData(0)" >
+                                            <option value="10" selected>10</option>
+                                            <option value="20">20</option>
+                                            <option value="50">50</option>
+                                            <option value="100">100</option>
+                                        </select>
+                    </nav>
+                </div>
+            </div>
+            <list-view rows="rows" columns="columns"></list-view>
+            <div class="row" ng-show="rows.length > 0">
+                <div style="margin-left: 87%; margin-top:-10px;">{{(currentPage-1) * pageSize + 1}}-{{(currentPage * pageSize) > totalRecordsCount?totalRecordsCount:(currentPage * pageSize)}} of {{totalRecordsCount}}</div>
+                <div class="pager">
+                    <nav class="pagination">
+                        <a class="first" ng-click="checkPaginationEndPoint(1)">
+                            << </a>
+                                <a class="prev" ng-click="addPage(-1)">
+                                    < </a>
+                                        <div class="pagedisplay">{{currentPage}}/{{pageCount}}</div>
+                                        <a ng-click="addPage(1)">></a>
+                                        <a ng-click="getTableData(pageCount)">>></a>
+                                        <select class="pagesize ng-pristine ng-untouched ng-valid" ng-model="pageSize" ng-change="getTableData(0)" >
+                                            <option value="10" selected>10</option>
+                                            <option value="20">20</option>
+                                            <option value="50">50</option>
+                                            <option value="100">100</option>
+                                        </select>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        <form ng-show="showPayment" ng-submit="payAndCancelReservation()"method="POST">            
+            <div class="box shadow-sm border rounded bg-white mb-3 reservation-info">
+                <div class="box-body border-bottom p-3">
+                    <div style="font-size: 18pt; font-weight: 700; text-align: center;">Cancellation Charges:- {{deposit}}</div>
+                </div>
+            </div>
+            <div class="box shadow-sm border rounded bg-white mb-3 reservation-info">
+                <div class="box-body border-bottom p-3">
+                    <div class="row">
+                        <div class="col-sm-6 form-group">
+                            <label for="Name_on_Credit_Card__c">Name on Credit Card?</label>
+                            <span class="required-asterisk">*</span>
+                            <input type="text" class="form-control" id="Name_on_Credit_Card__c" name="Name_on_Credit_Card__c" ng-model="Name_on_Credit_Card__c" pattern="[a-zA-Z ]*$"   maxlength="50">
+                        </div>                            
+                        <div class="col-sm-6 form-group">
+                            <label for="Credit_Card_Type__c">Credit Card Type</label>
+                            <span class="required-asterisk">*</span>
+                            <select class="form-control" id="Credit_Card_Type__c" name="Credit_Card_Type__c" ng-change="creditCardTypeChanged()" ng-model="Credit_Card_Type__c" >
+                                <option value="" disabled selected hidden>--Select--</option>
+                                <option ng-repeat="card in cardType" value="{{card}}">{{card}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row" id="associate-row">
+                        <div class="col-sm-6 form-group">
+                            <label for="Credit_Card_Number__c">Credit Card Number?</label>
+                            <span class="required-asterisk">*</span>
+                            <input type="text" class="form-control" id="Credit_Card_Number__c" name="Credit_Card_Number__c" ng-model="Credit_Card_Number__c"  pattern="[0-9]{13,16}" maxlength="{{creditCardNumberDigits}}" minlength="{{creditCardNumberDigits}}">
+                        </div>
+                        <div class="col-sm-3 form-group">
+                            <label for="expM">Expiration Dates</label>
+                            <span class="required-asterisk">*</span>
+                            <select class="form-control" id="expM" name="expM" ng-model="Credit_Card_Exp_Month__c" >
+                                <option value="" disabled selected hidden>Month</option>
+                                <option ng-repeat="month in months" value="{{month}}">{{month}}</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-3 form-group">
+                            <span class="span-space">.</span>
+                            <label for="expY">&nbsp;</label>                                   
+                            <select  class="form-control" id="expY" name="expY"  ng-model="Credit_Card_Exp_Year__c" >
+                                <option value="" disabled selected hidden>Year</option>
+                                <option ng-repeat="year in years" value="{{year}}">{{year}}</option>
+                            </select>
+                        </div>
+                    </div>                        
+                    <div class="row">
+                        <div class="col-sm-6 form-group">
+                            <label for="CVV">CVV</label>
+                            <span class="required-asterisk">*</span>
+                            <input type="text" class="form-control" id="CVV" name="CVV" ng-model="Credit_Card_CVV__c" pattern="[0-9]{3,4}"  maxlength="{{cvvDigits}}" minlength="{{cvvDigits}}">
+                        </div>
+                        <div class="col-sm-6 form-group">
+                            <label for="Zipcode">Zipcode</label>
+                            <span class="required-asterisk">*</span>
+                            <input type="text" class="form-control" id="zipcode" name="zipcode" ng-model="Postal_Code__c" pattern="[A-Za-z 0-9]{5,7}" minlength="5" maxlength="7">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div ng-show="errorMessage" class="alert alert-danger box shadow-sm border rounded mb-3 validationRule" role="alert"> {{errorMessage}} </div>
+            <div class="paymentButtonsRow">	
+                <button type="submit" class="btn btn-primary unit mt-0">Submit</button>
+                <button type="submit" class="btn unit mt-0" ng-click="cancelPayment()" style="background: #dc3545;color:#fff">Cancel</button> 
+            </div>
+        </form>
+    </main>
+</div>
+<spinner></spinner>

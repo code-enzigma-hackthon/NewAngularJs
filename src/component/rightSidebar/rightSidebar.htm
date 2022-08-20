@@ -1,0 +1,180 @@
+<div>
+    <a class="btn-reservation">
+        <button  ng-if ="memberInfo.Can_Make_Active_Reservation_From_Portal__c" type="button" class="btn btn-lg btn-block btn-warning mb-3 makeReservationBtn" ng-click="activeReservation()">Make a New Reservation</button> 
+        <button ng-if ="memberInfo.Can_Make_Request_Reservation_From_Portal__c" type="button" class="btn btn-lg btn-block btn-danger mb-3" ng-click="requestReservation()">Request a Reservation</button>
+    </a>
+
+    <div class="box mb-3 shadow-sm border rounded bg-white">
+        <!--Active Reservation -->
+        <div class="p-3 box-title border-bottom text-center">
+            <h6 class="m-0">Active Reservations</h6>
+        </div>
+        <div class="p-3 box-body">
+            <div ng-show="successMessage" class="alert alert-success" role="alert"> {{successMessage}} </div>
+            <div ng-hide="successMessage">
+                <div class="text-left">
+                    <div class="reservation-block" ng-repeat="record in activeReservations">
+                        <b>{{record.Name}}</b><br>
+                        <i data-feather="map-pin"></i>
+                        <div class="resort"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-map-pin">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg> {{record.Reservation_Resort__c}}
+                        </div>
+                        <div class="date">From: {{record.Arrival_Date__c | date:'MM-dd-yyyy'}}</div>
+                        <div class="date">To: {{record.Departure_Date__c | date:'MM-dd-yyyy'}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="box mb-3 shadow-sm border rounded bg-white text-left facebook-list">
+        <div class="p-3 box-title border-bottom text-center">
+            <h6 class="m-0">Follow us on Facebook</h6>
+        </div>
+        <div class="box-body p-2">
+            <!-- Facebook Ocean Canyon -->
+            <div class="d-flex align-items-center">
+                <div class="dropdown-list-item mr-3">
+                    <img class="rounded-circle" src="src/images/fb-icons/fb_profile_ocp.png" alt="Ocean Canyon Facebook Page" width="30" height="30">
+                </div>
+                <div class="mr-2">
+                    <div class="resort text-truncate">Ocean Canyon</div>
+                    <div class="tag">@OceanCanyon</div>
+                </div>
+                <span class="ml-auto">
+                    <a href="https://facebook.com/OceanCanyon" target="_blank">
+                        <button type="button" class="btn btn-outline-primary btn-sm">Follow</button>
+                    </a>
+                </span>
+            </div>
+
+            <!-- Facebook Abita Springs -->
+            <div class="d-flex align-items-center">
+                <div class="dropdown-list-item mr-3">
+                    <img class="rounded-circle" src="src/images/fb-icons/fb_profile_abita.jpg" alt="Abita Springs Facebook Page" width="30" height="30">
+                </div>
+                <div class="mr-2">
+                    <div class="resort text-truncate">Abita Springs</div>
+                    <div class="tag">@abitaspringsresort</div>
+                </div>
+                <span class="ml-auto">
+                    <a href="https://facebook.com/abitaspringsresort" target="_blank">
+                        <button type="button" class="btn btn-outline-primary btn-sm">Follow</button>
+                    </a>
+                </span>
+            </div>
+
+            <!-- Facebook Branson Ridge -->
+            <div class="d-flex align-items-center">
+                <div class="dropdown-list-item mr-3">
+                    <img class="rounded-circle" src="src/images/fb-icons/fb_profile_branson.jpg" alt="Branson Ridge Facebook Page" width="30" height="30">
+                </div>
+                <div class="mr-2">
+                    <div class="resort text-truncate">Branson Ridge</div>
+                    <div class="tag">@BransonRidge</div>
+                </div>
+                <span class="ml-auto">
+                    <a href="https://facebook.com/BransonRidge" target="_blank">
+                        <button type="button" class="btn btn-outline-primary btn-sm">Follow</button>
+                    </a>
+                </span>
+            </div>
+
+            <!-- Facebook Hideaway Ponds -->
+            <div class="d-flex align-items-center">
+                <div class="dropdown-list-item mr-3">
+                    <img class="rounded-circle" src="src/images/fb-icons/fb_profile_hideaway.jpg" alt="Hideaway Ponds Facebook Page" width="30" height="30">
+                </div>
+                <div class="mr-2">
+                    <div class="resort text-truncate">Hideaway Ponds</div>
+                    <div class="tag">@hideawayPonds</div>
+                </div>
+                <span class="ml-auto">
+                    <a href="https://facebook.com/HideawayPonds" target="_blank">
+                        <button type="button" class="btn btn-outline-primary btn-sm">Follow</button>
+                    </a>
+                </span>
+            </div>
+
+            <!-- Facebook Millwood Landing -->
+            <div class="d-flex align-items-center">
+                <div class="dropdown-list-item mr-3">
+                    <img class="rounded-circle" src="src/images/fb-icons/fb_profile_millwood.jpg" alt="Millwood Landing Facebook Page" width="30" height="30">
+                </div>
+                <div class="mr-2">
+                    <div class="resort text-truncate">Millwood Landing</div>
+                    <div class="tag">@MillwoodLandingResort</div>
+                </div>
+                <span class="ml-auto">
+                    <a href="https://facebook.com/MillwoodLandingResort" target="_blank">
+                        <button type="button" class="btn btn-outline-primary btn-sm">Follow</button>
+                    </a>
+                </span>
+            </div>
+
+            <!-- Facebook Mountain Lakes -->
+            <div class="d-flex align-items-center">
+                <div class="dropdown-list-item mr-3">
+                    <img class="rounded-circle" src="src/images/fb-icons/fb_profile_mountainlakes.jpg" alt="Mountain Lakes Facebook Page" width="30" height="30">
+                </div>
+                <div class="mr-2">
+                    <div class="resort text-truncate">Mountain Lakes</div>
+                    <div class="tag">@MountainLakesRVResort</div>
+                </div>
+                <span class="ml-auto">
+                    <a href="https://facebook.com/MountainLakesRVResort" target="_blank">
+                        <button type="button" class="btn btn-outline-primary btn-sm">Follow</button>
+                    </a>
+                </span>
+            </div>
+
+            <!-- Facebook Styx River -->
+            <div class="d-flex align-items-center">
+                <div class="dropdown-list-item mr-3">
+                    <img class="rounded-circle" src="src/images/fb-icons/fb_profile_styx.jpg" alt="Styx River Facebook Page" width="30" height="30">
+                </div>
+                <div class="mr-2">
+                    <div class="resort text-truncate">Styx River</div>
+                    <div class="tag">@styxriverresort</div>
+                </div>
+                <span class="ml-auto">
+                    <a href="https://facebook.com/styxriveresort" target="_blank">
+                        <button type="button" class="btn btn-outline-primary btn-sm">Follow</button>
+                    </a>
+                </span>
+            </div>
+
+            <!-- Facebook Texoma Shores -->
+            <div class="d-flex align-items-center">
+                <div class="dropdown-list-item mr-3">
+                    <img class="rounded-circle" src="src/images/fb-icons/fb_profile_texoma.jpg" alt="Texoma Shores Facebook Page" width="30" height="30">
+                </div>
+                <div class="mr-2">
+                    <div class="resort text-truncate">Texoma Shores</div>
+                    <div class="tag">@texomashoresrvresort</div>
+                </div>
+                <span class="ml-auto">
+                    <a href="https://facebook.com/texomashoresrvresort" target="_blank">
+                        <button type="button" class="btn btn-outline-primary btn-sm">Follow</button>
+                    </a>
+                </span>
+            </div>
+
+            <!-- Facebook Tres Rios -->
+            <div class="d-flex align-items-center">
+                <div class="dropdown-list-item mr-3">
+                    <img class="rounded-circle" src="src/images/fb-icons/fb_profile_tres.jpg" alt="Tres Rios Facebook Page" width="30" height="30">
+                </div>
+                <div class="mr-2">
+                    <div class="resort text-truncate">Tres Rios</div>
+                    <div class="tag">@TresRiosResort</div>
+                </div>
+                <span class="ml-auto">
+                    <a href="https://facebook.com/TresRiosResort" target="_blank">
+                        <button type="button" class="btn btn-outline-primary btn-sm">Follow</button>
+                    </a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

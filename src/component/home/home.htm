@@ -1,0 +1,115 @@
+<div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" ui-sref="home.welcome"><img src="src/images/OCP-Logo_w.png" width="120"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" id="toggle-button" ng-click="onToggle()">
+		   <span class="navbar-toggler-icon"></span>
+		   </button>
+           <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                 <ul class="navbar-nav mr-auto">
+                    <li class="nav-item" ui-sref-active="active">
+                        <a class="nav-link" ui-sref="home.welcome">Home</a>
+                    </li>
+                    <li class="nav-item" ui-sref-active="active">
+                        <a class="nav-link" ui-sref="home.memberInfo">My Profile</a>
+                    </li>
+                    <li class="nav-item" ui-sref-active="active">
+                        <a class="nav-link" ui-sref="home.accountInfo">My Account</a>
+                    </li>
+                    <li class="nav-item" ui-sref-active="active">
+                        <a class="nav-link" ui-sref="home.reservationInfo">Reservations</a>
+                    </li>
+                    <li class="nav-item" ui-sref-active="active">
+                        <a class="nav-link" href="https://oceancanyon.com/member-referrals/" target="_blank">
+                            Member Referrals
+                        </a>
+                    </li>
+                    <li class="nav-item" ui-sref-active="active">
+                        <a class="nav-link" href="http://reservationsurvey.oceancanyon.com" target="_blank">
+                            Satisfaction Survey 
+                        </a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="nav-item">
+                        <a class="nav-link" ui-sref="" ng-click="logout()">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="profile-cover text-center">
+        <img class="img-fluid" src="src/images/homeCover.jpg" alt="Ocean Canyon Properties">
+    </div>
+    <div class="profile-title bg-white shadow-sm border-bottom ">
+        <div class="container ">
+            <h5>{{memberInfo.FirstName}} {{memberInfo.LastName}}</h5>
+            <p>{{memberInfo.MembershipType}} {{memberInfo.MemberSince}}</p>
+        </div>
+    </div>
+    <div class="main-content ">
+        <div class="container ">
+            <div class="row ">
+                <!----------- CENTER CONTENT -------------->
+                <main class="col col-xl-9 order-x1-2 col-lg-12 order-lg-2 col-md-12 col-sm-12 col-12 p-0">
+                    <ui-view></ui-view>
+                </main>
+                <!------- LEFT SIDEBAR ---------->
+
+                <aside class="col col-xl-3 order-x1-1 col-lg-6 order-lg-1 col-md-6 col-sm-6 col-12">
+
+                    <div class="box mb-3 shadow-sm border rounded bg-white text-center">
+                        <!--I love camping -->
+                        <div class="p-5">
+                            <img src="src/images/ILoveCamping.png" alt="I Love Camping" width="150" height="81">
+                        </div>
+                        <div class="p-3 border-top ">
+                            <h5 class="mb-1 mb-0 ">{{memberInfo.FirstName}} {{memberInfo.LastName}}</h5>
+                            <p class="mb-0 text-muted ">
+                                <span ng-show="memberInfo.Spouse_First_name__c||memberInfo.Spouse_Last_Name__c">{{memberInfo.Spouse_First_name__c}} {{memberInfo.Spouse_Last_Name__c}}<br></span>
+                                <span ng-show="memberInfo.PersonMailingStreet">{{memberInfo.PersonMailingStreet}}<br></span>
+                                <span ng-show="memberInfo.PersonMailingCity">{{memberInfo.PersonMailingCity}}</span><span ng-show="memberInfo.PersonMailingState">,</span> {{memberInfo.PersonMailingState}} {{memberInfo.PersonMailingPostalCode}}<br ng-show="memberInfo.PersonMailingState||memberInfo.PersonMailingPostalCode">
+                                <span ng-show="memberInfo.Phone">{{memberInfo.Phone}}<br></span>
+                                <span ng-show="memberInfo.PersonEmail">{{memberInfo.PersonEmail}}<br></span>
+                                <br>
+                                <a ui-sref=".memberInfo ">View Profile</a>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="box mb-3 shadow-sm border rounded bg-white text-center ">
+                        <div class="p-3 ">
+                            <h5 class="mb-1 mb-0 ">Account Overview</h5>
+                            <p class="mb-0 text-muted ">
+                                <span>Dues Current Balance: </span> {{memberInfo.Dues_Current_Balance__c}}<br>
+                                <span>Loan Current Balance: </span> {{memberInfo.Loan_Current_Balance__c}}<br>
+
+                                <a ui-sref=".accountInfo ">View Dues and Loan Information</a>
+                            </p>
+                        </div>
+                    </div>
+                </aside>
+
+            </div>
+
+            <!-- FOOTER -->
+            <hr>
+            <div class="row ">
+                <div class="text-center col-lg-6 offset-lg-3 ">
+                    <p>Copyright &copy; {{year}} &middot; All Rights Reserved &middot; <a ui-sref="home.welcome">Ocean Canyon Properties</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="src/js/jquery-3.4.1.min.js"></script>
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="src/js/popper.min.js"></script>
+    <script src="src/js/bootstrap-4.4.1.js"></script>
+    <script>
+        feather.replace();
+    </script>
+
+</div>

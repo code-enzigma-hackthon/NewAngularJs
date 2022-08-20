@@ -1,0 +1,76 @@
+<div class="container" onunload="pageUnload()">
+    <div class="row">
+        <!----------- CENTER CONTENT -------------->
+        <main class="col col-xl-12 order-x1-2 col-lg-12 order-lg-2 col-md-12 col-sm-12 col-12" id="paymentMainDiv">                     	
+            <form ng-submit="valAndCreateLiveReservation()"method="POST">            
+                <div class="box shadow-sm border rounded bg-white mb-3 reservation-info">
+                    <div class="box-body border-bottom p-3">
+                        <div style="font-size: 18pt; font-weight: 700; text-align: center;">Deposit Needed Today: ${{deposit}}</div>
+                    </div>
+                </div>
+                <!---------- Reservation Information -------------->
+                <div class="box shadow-sm border rounded bg-white mb-3 reservation-info">
+                    <div class="box-body border-bottom p-3">
+                        <div class="row">
+                            <div class="col-sm-6 form-group">
+                                <label for="Name_on_Credit_Card__c">Name on Credit Card?</label>
+                                <span class="required-asterisk">*</span>
+                                <input type="text" class="form-control" id="Name_on_Credit_Card__c" name="Name_on_Credit_Card__c" ng-model="Name_on_Credit_Card__c" pattern="[a-zA-Z ]*$"   maxlength="50">
+                            </div>                            
+                            <div class="col-sm-6 form-group">
+                                <label for="Credit_Card_Type__c">Credit Card Type</label>
+                                <span class="required-asterisk">*</span>
+                                <select class="form-control" id="Credit_Card_Type__c" name="Credit_Card_Type__c" ng-change="getCreditCardType()" ng-model="Credit_Card_Type__c" >
+                                    <option value="" disabled selected hidden>--Select--</option>
+                                    <option ng-repeat="card in creditCardType" value="{{card}}">{{card}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row" id="associate-row">
+                            <div class="col-sm-6 form-group">
+                                <label for="Credit_Card_Number__c">Credit Card Number?</label>
+                                <span class="required-asterisk">*</span>
+                                <input type="text" class="form-control" id="Credit_Card_Number__c" name="Credit_Card_Number__c" ng-model="Credit_Card_Number__c"  pattern="[0-9]{13,16}" maxlength="{{creditCardNumberDigits}}" minlength="{{creditCardNumberDigits}}">
+                            </div>
+                            <div class="col-sm-3 form-group">
+                                <label for="expM">Expiration Dates</label>
+                                <span class="required-asterisk">*</span>
+                                <select class="form-control" id="expM" name="expM" ng-model="Credit_Card_Exp_Month__c" >
+                                    <option value="" disabled selected hidden>Month</option>
+                                    <option ng-repeat="month in months" value="{{month}}">{{month}}</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-3 form-group">
+                                <span class="span-space">.</span>
+                                <label for="expY">&nbsp;</label>                                   
+                                <select  class="form-control" id="expY" name="expY"  ng-model="Credit_Card_Exp_Year__c" >
+                                    <option value="" disabled selected hidden>Year</option>
+                                    <option ng-repeat="year in years" value="{{year}}">{{year}}</option>
+                                </select>
+                            </div>
+                        </div>                        
+                        <div class="row">
+                            <div class="col-sm-6 form-group">
+                                <label for="CVV">CVV</label>
+                                <span class="required-asterisk">*</span>
+                                <input type="text" class="form-control" id="CVV" name="CVV" ng-model="Credit_Card_CVV__c" pattern="[0-9]{3,4}"  maxlength="{{cvvDigits}}" minlength="{{cvvDigits}}">
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label for="Zipcode">Zipcode</label>
+                                <span class="required-asterisk">*</span>
+                                <input type="text" class="form-control" id="zipcode" name="zipcode" ng-model="Postal_Code__c" pattern="[A-Za-z 0-9]{5,7}" minlength="5" maxlength="7">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p  ng-show="memberInfo.PersonEmail" style="color: #007bff;">Your Payment receipt will be sent to <strong>{{memberInfo.PersonEmail}}</strong></p>
+                <div class="paymentButtonsRow">	
+                    <button type="submit" class="btn btn-primary unit mt-0">Submit</button>
+                    <button type="submit" class="btn unit mt-0" ng-click="cancelPayment()" style="background: #dc3545;color:#fff">Cancel</button> 
+                </div>	
+            </form>
+            <div ng-show="errorMessage" class="alert alert-danger box shadow-sm border rounded mb-3 validationRule" role="alert"> {{errorMessage}}</div>
+        </main> 
+    </div>
+</div>
+<spinner></spinner>

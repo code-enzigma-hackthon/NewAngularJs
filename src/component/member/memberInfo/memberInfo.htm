@@ -1,0 +1,277 @@
+<div class="container">
+    <div class="row">
+        <main class="col col-xl-8 order-x1-2 col-lg-12 order-lg-2 col-md-12 col-sm-12 col-12" ng-if="onEdit==true && changePassword ==false && updateRVInfo ==false">
+            <form id="memInfo">
+                <div>
+                    <!-- Account Information -->
+                    <div class="box shadow-sm border rounded bg-white mb-3 profile-info " style="overflow: hidden; ">
+                        <div class="box-title border-bottom p-3">
+                            <h6 class="mb-0 ">Account Information</h6>
+                            <button type="button " class="btn btn-outline-primary" style="float:right; margin-top: -27px;" ng-click="editMemberInfo()">Edit</button>
+                        </div>
+                        <div class="box-body p-3 ">
+                            <div style="float:left; ">
+                                <div class="profile-label ">Members</div>
+                                <p><span>Name:</span> {{editMemInfo.FirstName}} {{editMemInfo.LastName}}<br>
+                                    <span>Spouse:</span>{{editMemInfo.Spouse_First_name__c}} {{editMemInfo.Spouse_Last_Name__c}}</p>
+
+                                <div class="profile-label ">Address</div>
+                                <p>{{editMemInfo.PersonMailingStreet}}<br  ng-if="editMemInfo.PersonMailingStreet">{{editMemInfo.PersonMailingCity}}, {{editMemInfo.PersonMailingState}} {{editMemInfo.PersonMailingPostalCode}}</p>
+
+                                <div class="profile-label ">Phones</div>
+                                <p><span>Home Phone:</span> {{editMemInfo.Phone}}<br>
+                                    <span>Cell Phone:</span>{{editMemInfo.PersonMobilePhone}}</p>
+
+                                <div class="profile-label ">Email</div>
+                                <p>{{editMemInfo.PersonEmail}}</p>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <!-- Password-->
+                    <div class="box shadow-sm border rounded bg-white mb-3 profile-info ">
+                        <div class="box-title border-bottom p-3 ">
+                            <h6 class="mb-0 ">Password Details</h6>
+                            <button type="button " class="btn btn-outline-primary" style="float:right; margin-top: -27px;" ng-click="onChangePassword()">Change Password</button>
+                        </div>
+                        <div class="box-body p-3 ">
+                            <p><span>Password: *********</span>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- RV Information -->
+                    <div class="box shadow-sm border rounded bg-white mb-3 profile-info " style="overflow:hidden; ">
+                        <div class="box-title border-bottom p-3 ">
+                            <h6 class="mb-0 ">RV Information</h6>
+                            <button type="button " class="btn btn-outline-primary" style="float:right; margin-top: -27px;" ng-click="onUpdateRVInfo()">Edit</button>
+                        </div>
+                        <div class="box-body p-3 ">
+                            <div style="float: left; ">
+                                <p><span>RV Type:</span>{{editMemInfo.RV_Type__c}}<br>
+                                    <span>RV Length:</span> {{editMemInfo.RV_Length__c}}<br>
+                                    <span># of Slideouts:</span> {{editMemInfo.No_of_Slide_Outs__c}}<br>
+                                    <span>State Plate:</span>{{editMemInfo.State_Vehicle_Plate__c}}<br>
+                                    <span>Vehicle Plate #:</span>{{editMemInfo.Vehicle_Plate__c}}<br>
+                                    <span>RV Electrical:</span>{{editMemInfo.RV_Electrical__c}}</p>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!--Membership Details -->
+                    <div class="box shadow-sm border rounded bg-white mb-3 profile-info ">
+                        <div class="box-title border-bottom p-3 ">
+                            <h6 class="mb-0 ">Membership Details</h6>
+                        </div>
+                        <div class="box-body p-3 ">
+                            <p><span>Membership Type:</span> {{editMemInfo.MembershipType}}<br>
+                                <span>Membership Status:</span> {{editMemInfo.Type}}<br>
+                                <span>Member Since:</span>{{editMemInfo.Member_Since__c | date:'MM-dd-yyyy'}}<br>
+                                <span>Maximum Nights per Reservation:</span> {{editMemInfo.Max_Days_In__c}}<br>
+                                <span>Number of Days for Advanced Reservations:</span>{{editMemInfo.RV_Site_Days_Advance_Reserve__c}}<br>
+                                <span>Contract Number:</span> {{editMemInfo.Contract_no__c}}<br></p>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </main>
+        <main class="col col-xl-12 order-x1-2 col-lg-12 order-lg-2 col-md-12 col-sm-12 col-12" ng-if="onEdit==false && changePassword ==false && updateRVInfo == false">
+            <form ng-submit="submitMemberInfo()">
+                <div>
+                    <div class="box shadow-sm border rounded bg-white" style="padding: 29px;">
+                        <div class="box-title border-bottom p-2 row">
+                            <div class="col-sm-6">
+                                <h6>Account Information</h6>
+                            </div>
+                            <div class="col-sm-6" style="text-align: right;">
+                                <button type="button " class="btn btn-outline-primary " >Submit</button>
+                                <button type="button " class="btn btn-outline-primary " ng-click="cancel()">Cancel</button>
+                            </div>
+                        </div>
+                        <div class="row ">
+                            <div class="col-sm-6 p-3 form-group ">
+                                <label for="member-first-name ">Member First Name</label>
+                                <input type="text" maxlength="40" class="form-control " id="member-first-name " name="member_first_name " ng-model="memberInfo.FirstName" ng-change="(updateInfo.TempFirstName__c = memberInfo.FirstName)">
+                            </div>
+                            <div class="col-sm-6 p-3 form-group ">
+                                <label for="member-last-name ">Member Last Name</label>
+                                <span class="required-asterisk">*</span>
+                                <input type="text" maxlength="40" class="form-control " id="member-last-name " name="member_last_name " ng-model="memberInfo.LastName" ng-change="(updateInfo.TempLastName__c = memberInfo.LastName)" required>
+                            </div>
+                        </div>
+                        <div class="row ">
+                            <div class="col-sm-6 form-group ">
+                                <label for="member-first-name ">Spouse First Name</label>
+                                <input type="text" maxlength="40" class="form-control " id="spouse-first-name " name="spouse_first_name " ng-model="memberInfo.Spouse_First_name__c " ng-change="(updateInfo.Temp_Spouse_First_Name__c = memberInfo.Spouse_First_name__c)">
+                            </div>
+                            <div class="col-sm-6 form-group ">
+                                <label for="member-last-name ">Spouse Last Name</label>
+                                <input type="text" maxlength="40" class="form-control " id="spouse-last-name" name="spouse_last_name" ng-model="memberInfo.Spouse_Last_Name__c" ng-change="(updateInfo.Temp_Spouse_Last_Name__c = memberInfo.Spouse_Last_Name__c)">
+                            </div>
+                        </div>
+                        <div class="row p-3 mb-3 mt-4 border-bottom ">
+                            <h6>Address</h6>
+                        </div>
+                        <div class="row ">
+                            <div class="col-sm-6 form-group ">
+                                <label for="add-street ">Street</label>
+                                <input class="form-control " type="text" maxlength="80" id="add-street " name="add_street " ng-model="memberInfo.PersonMailingStreet " ng-change="(updateInfo.TempPersonMailingStreet__c = memberInfo.PersonMailingStreet)">
+                            </div>
+                            <div class="col-sm-6 form-group ">
+                                <label for="add-city ">City</label>
+                                <input class="form-control " type="text" maxlength="80" id="add-city " name="add_city " ng-model="memberInfo.PersonMailingCity " ng-change="(updateInfo.TempPersonMailingCity__c = memberInfo.PersonMailingCity)">
+                            </div>
+                        </div>
+                        <div class="row ">
+                            <div class="col-sm-6 form-group ">
+                                <label for="add-state ">State</label>
+                                <input class="form-control " type="text" maxlength="80" id="add_state " name="add_state " ng-model="memberInfo.PersonMailingState " ng-change="(updateInfo.TempPersonMailingState__c = memberInfo.PersonMailingState)">
+
+                            </div>
+
+                            <div class="col-sm-6 form-group ">
+                                <label for="add-zip ">Zip Code</label>
+                                <input type="text" maxlength="40" class="form-control " id="add-zip " name="add_zip " ng-model="memberInfo.PersonMailingPostalCode " ng-change="(updateInfo.TempPersonMailingPostalCode__c = memberInfo.PersonMailingPostalCode)">
+                            </div>
+                        </div>
+                        <div class="row p-3 mb-3 mt-3 border-bottom ">
+                            <h6 class="m-0 ">Phone Numbers</h6>
+                        </div>
+                        <div class="row ">
+                            <div class="col-sm-6 form-group ">
+                                <label for="phone-home ">Home Phone</label>
+                                <input type="phone" maxlength ="15" class="form-control " id="phone-home " name="phone_home " ng-model="memberInfo.Phone " ng-change="(updateInfo.TempPhone__c = memberInfo.Phone)">
+                            </div>
+                            <div class="col-sm-6 form-group ">
+                                <label for="phone-mobile ">Cell Phone</label>
+                                <input type="phone" maxlength ="15" class="form-control " id="phone-mobile " name="phone_mobile " ng-model="memberInfo.PersonMobilePhone " ng-change="(updateInfo.TempPersonMobilePhone__c = memberInfo.PersonMobilePhone)">
+                            </div>
+                        </div>
+                        <div class="row p-3 mb-3 mt-4 border-bottom ">
+                            <h6 class="m-0 ">Email</h6>
+                        </div>
+                        <div class="row ">
+                            <div class="col-sm-6 form-group ">
+                                <label for="email ">Email</label>
+                                <span class="required-asterisk">*</span>
+                                <input type="email" id="email" name="email" class="form-control ng-pristine ng-valid ng-empty ng-valid-email ng-touched" ng-model="memberInfo.PersonEmail " ng-change="(updateInfo.PersonEmail = memberInfo.PersonEmail)"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12" style="text-align: right;">
+                                <button type="button " class="btn btn-outline-primary " >Submit</button>
+                                <button type="button " class="btn btn-outline-primary " ng-click="cancel()">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </main>
+        <main class="col col-xl-12 order-x1-2 col-lg-12 order-lg-2 col-md-12 col-sm-12 col-12" ng-if="changePassword ==true && onEdit ==true && updateRVInfo ==false" data-ng-init="passwordPolicy(isClick = true)">
+            <form id="chanePassword " ng-submit="updatePassword()">
+                <div>
+                    <div class="box shadow-sm border rounded bg-white" style="padding: 29px;">
+                        <div class="box-title border-bottom p-2 row">
+                            <div class="col-sm-6">
+                                <h6>Update Password</h6>
+                            </div>
+                            <div class="col-sm-6" style="text-align: right;">
+                                <button type="button " class="btn btn-outline-primary " ng-click="UpdatePassword()">Submit</button>
+                                <button type="button " class="btn btn-outline-primary " ng-click="cancelUpdatePassword()">Cancel</button>
+                            </div>
+                        </div>
+                        <div class="alert alert-danger" role="alert" ng-show="errorMessage">{{errorMessage}}</div>
+                        <div class="row ">
+                            <div class="col-sm-12 form-group ">
+                                <span class="required-asterisk">*</span>
+                                <label for="member-old-password ">Old Password</label>
+                                <input type="password" class="form-control " id="member-old-password" name="member-old-password" ng-model="memberUpdatePassword.oldPassword">
+                            </div>
+                            <div class="col-sm-12 form-group " style="margin-bottom: 5px;">
+                                <span class="required-asterisk">*</span>
+                                <label for="member-new-password">New Password</label>
+                                <input type="password" id="member-new-password" ng-model="memberUpdatePassword.newPassword" class="form-control" ng-change="passwordPolicy(isClick = true)">
+                            </div>
+                            <div class="col-sm-12 form-group">
+                            <div id="message" style="margin-bottom: -30px;">
+                                Your password must have atleast:
+                                <p><b id="length" class="invalid">minimun 8 characters</b><br>
+                                <b id="capital" class="invalid">atleast 1 uppercase</b><br>
+                                <b id="number" class="invalid">atleast 1 number</b><br>
+                                <b id="symbol" class="invalid">atleast 1 special character</b></p>                              
+                            </div>
+                        </div>
+                            <div class="col-sm-12 form-group ">
+                                <span class="required-asterisk">*</span>
+                                <label for="member-confirm-password">Confirm Password</label>
+                                <input type="password" class="form-control " id="member-confirm-password " name="member-confirm-password" ng-model="memberUpdatePassword.confirmPassword">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </main>
+        <main class="col col-xl-12 order-x1-2 col-lg-12 order-lg-2 col-md-12 col-sm-12 col-12" ng-if="updateRVInfo ==true && changePassword ==false && onEdit ==true">
+            <form ng-submit="submitMemberInfo()">
+                <div class="box shadow-sm border rounded bg-white" style="padding: 29px;">
+                    <div class="box-title border-bottom p-2 row">
+                        <div class="col-sm-6">
+                            <h6>RV Information</h6>
+                        </div>
+                        <div class="col-sm-6" style="text-align: right;">
+                            <button type="button " class="btn btn-outline-primary " >Submit</button>
+                            <button type="button " class="btn btn-outline-primary " ng-click="cancelRVInfo()">Cancel</button>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-sm-6 form-group ">
+                            <label for="rv-type  ">RV Type</label>
+                            <span class="required-asterisk">*</span>
+                            <select class="form-control " id="rv-type " name="rv-type" ng-model="memberInfo.RV_Type__c " ng-change="(updateInfo.RV_Type__c = memberInfo.RV_Type__c)" required>
+                                <option value="" disabled selected hidden >--Select--</option>
+                                <option ng-repeat="option in rvPickList" value="{{option.value}}">{{option.label}}</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-6 form-group ">
+                            <label for="rv-length ">RV Length</label>
+                            <span class="required-asterisk">*</span>
+                            <input type="number" step="1.00" min="1" max="99" class="form-control " id="rv-length " name="rv_length " ng-model="memberInfo.RV_Length__c " ng-change="(updateInfo.RV_Length__c = memberInfo.RV_Length__c)" required>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-sm-6 form-group ">
+                            <label for="slideouts ">Number of Slideouts</label>
+                            <span class="required-asterisk">*</span>
+                            <input type="number" step="1.00" min="1" max="99" class="form-control " id="slideouts " name="slideouts " ng-model="memberInfo.No_of_Slide_Outs__c " ng-change="(updateInfo.No_of_Slide_Outs__c = memberInfo.No_of_Slide_Outs__c)" required>
+                        </div>
+                        <div class="col-sm-6 form-group ">
+                            <label for="state-plate ">State Plate</label>
+                            <select class="form-control " id="state-plate " name="state-plate " ng-model="memberInfo.State_Vehicle_Plate__c " ng-change="(updateInfo.State_Vehicle_Plate__c = memberInfo.State_Vehicle_Plate__c)">
+                                <option value="" disabled selected hidden >--Select--</option>
+                                <option ng-repeat="option in statePlatePickList" value="{{option.value}}">{{option.label}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-sm-6 form-group ">
+                            <label for="number-plate ">Vehicle Plate #</label>
+                            <input type="text" maxlength="12" class="form-control " id="number-plate " name="number-plate " ng-model="memberInfo.Vehicle_Plate__c " ng-change="(updateInfo.Vehicle_Plate__c = memberInfo.Vehicle_Plate__c)">
+                        </div>
+                        <div class="col-sm-6 form-group ">
+                            <label for="amperage">Select Your Amperage</label>
+                            <span class="required-asterisk">*</span>
+                            <select class="form-control" id="amperage" ng-model="memberInfo.RV_Electrical__c" name="amperages" ng-change="(updateInfo.RV_Electrical__c = memberInfo.RV_Electrical__c)" required>
+                                <option value="" disabled selected hidden >--Select--</option>
+                                <option ng-repeat="option in rvElectrical" value="{{option.value}}">{{option.label}}</option>  
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </main>
+        <aside class="col col-xl-4 order-x1-3 col-lg-6 order-lg-3 col-md-6 col-sm-6 col-12" ng-if="onEdit==true && changePassword ==false && updateRVInfo== false">
+            <right-sidebar></right-sidebar>
+        </aside>
+    </div>
+</div>

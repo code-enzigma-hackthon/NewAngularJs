@@ -1,0 +1,20 @@
+<div class="bg-white">
+	<div class="container">
+		<div class="box shadow-sm border rounded bg-white mb-3 reservation-info">
+			<div class="box-body p-3 table-responsive">
+				<table class="reservation-table table table-striped">
+				   	<tr class="headerBgColor">
+						<td></td>
+						<th ng-repeat="column in columns" name="column.key" style="width:{{column.width}}%;" >
+							<div >{{column.label}}</div>
+						</th>
+					</tr>
+					<tr ng-repeat="row in rows">
+						<th>{{row.conference}}</th>
+						<td ng-repeat="data in row.data">{{data.BookBy}}</td>
+					</tr>
+				</table>
+			</div>
+	  </div>
+	</div>
+</div>

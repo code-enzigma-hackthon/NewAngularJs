@@ -1,0 +1,21 @@
+<div class="bg-white">
+    <div class="container">
+        <div class="row justify-content-center align-items-center d-flex vh-100">
+            <div class="col-md-4 mx-auto">
+                <div class="py-4">
+                    <div class="text-center mb-4">
+                        <img src="src/images/OCPLogo.jpg" alt="Ocean Canyon Properties Member Portal" width="300">
+                        <h5 class="font-weight-bold mt-3">Ocean Canyon Members</h5>
+                    </div>
+                    <div ng-show="errorMessage" class="alert alert-danger" role="alert"> {{errorMessage}} </div>
+                    <div ng-show="successMessage" class="alert alert-success" role="alert"> {{successMessage}} </div>
+                    <form id="joinForm">
+                        <button class="btn btn-primary btn-block text-uppercase" type="submit" ng-disabled="errorMessage" ng-click="continueToLogin()"> Continue&nbsp; </button>
+                        <div class="align-item-center formExtra">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

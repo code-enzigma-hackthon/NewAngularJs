@@ -1,0 +1,65 @@
+<div class="container">
+    <div class="row">
+        <main class="col col-xl-8 order-x1-2 col-lg-12 order-lg-2 col-md-12 col-sm-12 col-12">
+            <!-- Membership Details -->
+            <div class="box shadow-sm border rounded bg-white mb-3 profile-info">
+                <div class="box-title border-bottom p-3">
+                    <h6 class="mb-0">Membership Details</h6>
+                </div>
+                <div class="box-body p-3">
+                    <p><span>Membership Type:</span>{{accountInfo.MembershipType}}<br>
+                        <span>Membership Status:</span> {{accountInfo.Type}}<br>
+                        <span>Member Since:</span>{{accountInfo.Member_Since__c | date:'MM-dd-yyyy'}}<br>
+                        <span>Maximum Nights per Reservation:</span>{{accountInfo.Max_Days_In__c}}<br>
+                        <span>Number of Days for Advanced Reservations:</span> {{accountInfo.RV_Site_Days_Advance_Reserve__c}}<br>
+                        <span>Contract Number:</span>{{accountInfo.Contract_no__c}}<br></p>
+                </div>
+            </div>
+
+            <!-- Dues Billing -->
+            <div class="box shadow-sm border rounded bg-white mb-3 profile-info" style="overflow:hidden;">
+                <div class="box-title border-bottom p-3">
+                    <h6 class="mb-0">Dues Account</h6>
+                    <p class="text-extra" ng-show="accountInfo.Dues_Data_Current_as_of__c">Information current as of {{accountInfo.Dues_Data_Current_as_of__c | date:'MM-dd-yyyy'}}</p>
+                </div>
+                <div class="box-body p-3">
+                    <div style="float: left;">
+                        <p><span>Dues Account #:</span> {{accountInfo.Equiant_Account_No__c}}<br>
+                            <span>Annual Dues Amount:</span>{{accountInfo.Dues_Annual_Amount_Billed__c}}<br>
+                            <span>Dues Current Balance:</span>{{accountInfo.Dues_Current_Balance__c}}<br>
+                            <span>Dues Past Due Amount:</span>{{accountInfo.Dues_Past_Due_Amount__c}}<br>
+                            <span>Dues Days Delinquent:</span>{{accountInfo.Dues_Days_Delinquent__c}}<br>
+                            <span>Dues Next Bill Due Date:</span>{{accountInfo.Dues_Next_Bill_Due_Date__c | date:'MM-dd-yyyy'}}<br></p>
+                    </div>
+                    <a href="https://www.myaccountinfo.com/Account/LogOn" target="_blank" style="float:right;">
+                        <button type="button" class="btn btn-outline-primary">Pay Dues</button>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Loan Contract -->
+            <div class="box shadow-sm border rounded bg-white mb-3 profile-info" style="overflow: hidden;">
+                <div class="box-title border-bottom p-3">
+                    <h6 class="mb-0">Loan Account</h6>
+                </div>
+                <div class="box-body p-3">
+                    <div style="float:left;">
+                        <p><span>Loan Account #:</span>{{accountInfo.Equiant_Loan_No__c}} <br>
+                            <span>Loan Start Date:</span>{{accountInfo.Loan_Date__c | date:'MM-dd-yyyy'}}<br>
+                            <span>Loan Amount:</span>{{accountInfo.Loan_Amount__c}}<br>
+                            <span>Current Balance:</span>{{accountInfo.Loan_Current_Balance__c}}<br>
+                            <span>Loan Payment Amount:</span>{{accountInfo.Loan_Regular_Payment_Amount__c}}<br>
+                            <span>Next Payment Date:</span> {{accountInfo.Loan_Next_Payment_Date__c | date:'MM-dd-yyyy'}}<br>
+                            <span># of Payments Remaining:</span> {{accountInfo.Loan_No_Paymnts_Left__c}}</p>
+                    </div>
+                    <a href="https://www.myaccountinfo.com/Account/LogOn" target="_blank" style="float: right;">
+                        <button type="button" class="btn btn-outline-primary">Pay Loan</button>
+                    </a>
+                </div>
+            </div>
+        </main>
+        <aside class="col col-xl-4 order-x1-3 col-lg-6 order-lg-3 col-md-6 col-sm-6 col-12">
+            <right-sidebar></right-sidebar>
+        </aside>
+    </div>
+</div>
